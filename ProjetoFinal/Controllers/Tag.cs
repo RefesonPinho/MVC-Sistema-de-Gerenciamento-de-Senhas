@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Models;
 using System.Text.RegularExpressions;
+using Views;
 
 namespace Controllers
 {
@@ -17,7 +18,6 @@ namespace Controllers
                 throw new Exception("Nome inválido");
             }
            
-
             return new Tag(Descricao);
         }
 
@@ -63,6 +63,11 @@ namespace Controllers
             }
 
             return tag;
+        }
+
+        internal static void InserirTag(TagInsert textDescricao)
+        {
+            throw new NotImplementedException();
         }
     }
 }
