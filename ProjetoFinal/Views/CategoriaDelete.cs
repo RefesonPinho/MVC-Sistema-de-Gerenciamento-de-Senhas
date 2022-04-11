@@ -15,42 +15,31 @@ using lib;
 
 namespace Views
 {
-    public class TagUpdate : BaseForm
+    public class CategoriaDelete : BaseForm
     {
         public delegate void HandleButton(object sender, EventArgs e);
 
         private System.ComponentModel.IContainer components = null;
-        TextBox text;
-        Label lblUpdate;
+        Label lblDelete;
         Label lblId;
-        Label lblDescricao;
-        TextBox textDescricao;
         TextBox textId;
         Button btnConfirm1;
         Button btnCancel1;
 
-        public TagUpdate() : base("Alterar Tags")
+        public CategoriaDelete() : base("Deletar Categoria")
         {
-            this.lblUpdate = new Label();
-            this.lblUpdate.Text = "Dados Tag:";
-            this.lblUpdate.Location = new Point(100, 50);
+            this.lblDelete = new Label();
+            this.lblDelete.Text = "Dados Categoria:";
+            this.lblDelete.Location = new Point(100, 50);
 
             this.lblId = new Label();
-            this.lblId.Text = " Digite o Id deseja alterar ";
+            this.lblId.Text = " Digite o Id que deseja Excluir ";
             this.lblId.Location = new Point(80, 100);
             this.lblId.Size = new Size(240,15);
 
             textId = new TextBox();
             textId.Location = new Point(10,125);
             textId.Size = new Size(360,20);
-            
-            this.lblDescricao = new Label();
-            this.lblDescricao.Text = " Descricao";
-            this.lblDescricao.Location = new Point(160, 150);
-
-            textDescricao = new TextBox();
-            textDescricao.Location = new Point(10,175);
-            textDescricao.Size = new Size(360,20);
 
             this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 40,240, this.handleConfirmClick);
             this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 150, 240, this.handleCancelClick);
@@ -59,11 +48,9 @@ namespace Views
             
             this.components = new System.ComponentModel.Container();
 
-            this.Controls.Add(this.lblUpdate);
-            this.Controls.Add(this.lblDescricao);
+            this.Controls.Add(this.lblDelete);
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.textId);
-            this.Controls.Add(this.textDescricao);
             this.Controls.Add(this.btnConfirm1);
             this.Controls.Add(this.btnCancel1);
             
@@ -73,7 +60,7 @@ namespace Views
                   
             try
             {
-                int Id = int.Parse(textId.Text);
+                int Id;
                 try
                 {
                     Id = int.Parse(textId.Text); 
@@ -83,13 +70,12 @@ namespace Views
                     throw new Exception("ID inválido.");
                 }
                 
-                TagController.AlterarTag(
-                    Id,
-                    textDescricao.Text
+                CategoriaController.ExcluirCategoria(
+                    Id
                 );
 
-                MessageBox.Show("Dados alterados com sucesso.");
-                Views.TagMenu menu = new Views.TagMenu();
+                MessageBox.Show("Dados excluidos com sucesso.");
+                Views.CategoriaMenu menu = new Views.CategoriaMenu();
                 this.Close();
 
             }

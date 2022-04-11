@@ -15,38 +15,37 @@ using lib;
 
 namespace Views
 {
-    public class TagUpdate : BaseForm
+    public class CategoriaInsert : BaseForm
     {
         public delegate void HandleButton(object sender, EventArgs e);
 
         private System.ComponentModel.IContainer components = null;
-        TextBox text;
-        Label lblUpdate;
-        Label lblId;
+        Label lblInsert;
+        Label lblNome;
+        TextBox textNome;
         Label lblDescricao;
         TextBox textDescricao;
-        TextBox textId;
         Button btnConfirm1;
         Button btnCancel1;
 
-        public TagUpdate() : base("Alterar Tags")
+        public CategoriaInsert() : base("Inserir Categoria")
         {
-            this.lblUpdate = new Label();
-            this.lblUpdate.Text = "Dados Tag:";
-            this.lblUpdate.Location = new Point(100, 50);
+            this.lblInsert = new Label();
+            this.lblInsert.Text = "Dados Categoria:";
+            this.lblInsert.Location = new Point(100, 50);
 
-            this.lblId = new Label();
-            this.lblId.Text = " Digite o Id deseja alterar ";
-            this.lblId.Location = new Point(80, 100);
-            this.lblId.Size = new Size(240,15);
+            this.lblNome = new Label();
+            this.lblNome.Text = " Digite o Nome ";
+            this.lblNome.Location = new Point(120, 100);
+            this.lblNome.Size = new Size(240,15);
 
-            textId = new TextBox();
-            textId.Location = new Point(10,125);
-            textId.Size = new Size(360,20);
+            textNome = new TextBox();
+            textNome.Location = new Point(10,125);
+            textNome.Size = new Size(360,20);
             
             this.lblDescricao = new Label();
             this.lblDescricao.Text = " Descricao";
-            this.lblDescricao.Location = new Point(160, 150);
+            this.lblDescricao.Location = new Point(120, 150);
 
             textDescricao = new TextBox();
             textDescricao.Location = new Point(10,175);
@@ -59,37 +58,29 @@ namespace Views
             
             this.components = new System.ComponentModel.Container();
 
-            this.Controls.Add(this.lblUpdate);
-            this.Controls.Add(this.lblDescricao);
-            this.Controls.Add(this.lblId);
-            this.Controls.Add(this.textId);
-            this.Controls.Add(this.textDescricao);
+            this.Controls.Add(this.lblInsert);
             this.Controls.Add(this.btnConfirm1);
             this.Controls.Add(this.btnCancel1);
-            
+            this.Controls.Add(this.lblNome);
+            this.Controls.Add(this.lblDescricao);
+            this.Controls.Add(this.btnConfirm1);
+            this.Controls.Add(this.btnCancel1);
+            this.Controls.Add(this.textNome);
+            this.Controls.Add(this.textDescricao);
                
         }
-        private void handleConfirmClick(object sender, EventArgs e) {
+        private void handleConfirmClick(object sender, EventArgs e) 
+        {
                   
             try
             {
-                int Id = int.Parse(textId.Text);
-                try
-                {
-                    Id = int.Parse(textId.Text); 
-                }
-                catch
-                {
-                    throw new Exception("ID inválido.");
-                }
-                
-                TagController.AlterarTag(
-                    Id,
+                CategoriaController.InserirCategoria(
+                    textNome.Text,
                     textDescricao.Text
                 );
 
-                MessageBox.Show("Dados alterados com sucesso.");
-                Views.TagMenu menu = new Views.TagMenu();
+                MessageBox.Show("Dados inseridos com sucesso.");
+                Views.CategoriaMenu menu = new Views.CategoriaMenu();
                 this.Close();
 
             }
@@ -98,7 +89,7 @@ namespace Views
                 MessageBox.Show("Não foi possível inserir os dados.");
             }              
         }
-        
+
         private void handleCancelClick(object sender, EventArgs e)
         {
             Views.MenuPrincipal menu = new Views.MenuPrincipal();
