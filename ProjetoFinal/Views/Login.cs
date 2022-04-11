@@ -84,7 +84,7 @@ namespace Views
         Label lblLogin;
 
         Button btnTag;
-        Button btnPaciente;
+        Button btnCategoria;
         Button btnProcedi;
         Button btnEspeciali;
         Button btnSala;
@@ -105,11 +105,11 @@ namespace Views
             this.btnTag.Size = new Size(100, 30);
             this.btnTag.Click += new EventHandler(this.handleTagClick);
 
-            this.btnPaciente = new Button();
-            this.btnPaciente.Text = "Paciente";
-            this.btnPaciente.Location = new Point(160, 60);
-            this.btnPaciente.Size = new Size(100, 30);
-            this.btnPaciente.Click += new EventHandler(this.handlePacienteClick);
+            this.btnCategoria = new Button();
+            this.btnCategoria.Text = "Categoria";
+            this.btnCategoria.Location = new Point(160, 60);
+            this.btnCategoria.Size = new Size(100, 30);
+            this.btnCategoria.Click += new EventHandler(this.handleCategoriaClick);
 
             this.btnProcedi = new Button();
             this.btnProcedi.Text = "Procedimento";
@@ -144,7 +144,7 @@ namespace Views
             this.Controls.Add(this.lblLogin);
 
             this.Controls.Add(this.btnTag);
-            this.Controls.Add(this.btnPaciente);
+            this.Controls.Add(this.btnCategoria);
             this.Controls.Add(this.btnProcedi);
             this.Controls.Add(this.btnEspeciali);
             this.Controls.Add(this.btnSala);
@@ -152,11 +152,10 @@ namespace Views
             this.Controls.Add(this.btnCancel);
 
         }
-        private void handlePacienteClick(object sender, EventArgs e)
+        private void handleCategoriaClick(object sender, EventArgs e)
         {
-            MenuPrincipal menu = new MenuPrincipal();
+            Views.CategoriaMenu menu = new Views.CategoriaMenu();
             menu.ShowDialog();
-            this.Close();
         }
         private void handleTagClick(object sender, EventArgs e)
         {

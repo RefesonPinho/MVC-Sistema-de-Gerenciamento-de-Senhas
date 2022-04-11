@@ -64,10 +64,5 @@ namespace Controllers
 
             return tag;
         }
-
-        internal static void InserirTag(TagInsert textDescricao)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

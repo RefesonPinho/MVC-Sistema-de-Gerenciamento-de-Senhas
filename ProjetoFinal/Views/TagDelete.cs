@@ -33,8 +33,8 @@ namespace Views
             this.lblDelete.Location = new Point(100, 50);
 
             this.lblId = new Label();
-            this.lblId.Text = " Digite o Id da Tag que deseja Excluir ";
-            this.lblId.Location = new Point(120, 100);
+            this.lblId.Text = " Digite o Id que deseja Excluir ";
+            this.lblId.Location = new Point(80, 100);
             this.lblId.Size = new Size(240,15);
 
             textId = new TextBox();

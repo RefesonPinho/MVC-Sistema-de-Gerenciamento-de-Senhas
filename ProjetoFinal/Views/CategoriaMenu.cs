@@ -13,7 +13,7 @@ using static lib.Campos;
 
 namespace Views
 {
-    public class TagMenu : BaseForm
+    public class CategoriaMenu : BaseForm
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -23,7 +23,7 @@ namespace Views
         Button btnExcluir;
         Button btnVoltar;
 
-        public TagMenu() : base("Tag cadastradas")
+        public CategoriaMenu() : base("Categorias cadastradas")
         {
             ListView listView1 = new ListView();
             listView1.Dock = DockStyle.Fill;
@@ -35,21 +35,25 @@ namespace Views
             list0.Text = "Id";
             list0.Width = -2;
             ColumnHeader list1 = new ColumnHeader();
-            list1.Text = "Descrição";
+            list1.Text = "Nome";
             list1.Width = -2;
+            ColumnHeader list2= new ColumnHeader();
+            list2.Text = "Descrição";
+            list2.Width = -2;
 
             // Add the column headers to listView1.
             listView1.Columns.AddRange(new ColumnHeader[] 
-                {list0, list1});
+                {list0, list1,list2});
 
 
                 // Create items and add them to myListView.
 			listView1.View = View.Details;
-			foreach(Tag item in TagController.GetTags())
+			foreach(Categoria item in CategoriaController.GetCategorias())
             {
-                ListViewItem listTag = new ListViewItem(item.Id + "");
-                listTag.SubItems.Add(item.Descricao);	
-                listView1.Items.AddRange(new ListViewItem[]{listTag});
+                ListViewItem listCategoria= new ListViewItem(item.Id + "");
+                listCategoria.SubItems.Add(item.Nome);
+                listCategoria.SubItems.Add(item.Descricao);	
+                listView1.Items.AddRange(new ListViewItem[]{listCategoria});
             }
         
             this.btnInsert = new Button();
@@ -78,8 +82,6 @@ namespace Views
             
             this.components = new System.ComponentModel.Container();
 
-            
-
             this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.btnAlterar);
             this.Controls.Add(this.btnExcluir);
@@ -89,22 +91,22 @@ namespace Views
             this.Controls.Add(listView1);    
             this.Controls.Add(this.listView1);
             this.Size = new System.Drawing.Size(550, 330);
-            this.Text = "Informações do Tag:";
+            this.Text = "Informações das Categorias:";
             }
         private void handleInsertClick(object sender, EventArgs e)
         {
-            Views.TagInsert menu = new Views.TagInsert();
+            Views.CategoriaInsert menu = new Views.CategoriaInsert();
             menu.ShowDialog();
         }
 
         private void handleAlterarClick(object sender, EventArgs e)
         {
-           Views.TagUpdate menu = new Views.TagUpdate();
+           Views.CategoriaUpdate menu = new Views.CategoriaUpdate();
             menu.ShowDialog();
         }
         private void handleExcluirClick(object sender, EventArgs e)
         {
-            Views.TagDelete menu = new Views.TagDelete();
+            Views.CategoriaDelete menu = new Views.CategoriaDelete();
             menu.ShowDialog();
         }
         private void handleVoltarClik(object sender, EventArgs e)
@@ -112,6 +114,5 @@ namespace Views
            Views.MenuPrincipal menu = new Views.MenuPrincipal();
             this.Close();
         }  
-
     }           
 }
