@@ -19,7 +19,6 @@ namespace Views
     {
         public delegate void HandleButton(object sender, EventArgs e);
 
-        private System.ComponentModel.IContainer components = null;
         Label lblInsert;
         Label lblNome;
         TextBox textNome;
@@ -53,10 +52,6 @@ namespace Views
 
             this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 40,240, this.handleConfirmClick);
             this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 150, 240, this.handleCancelClick);
-
-            
-            
-            this.components = new System.ComponentModel.Container();
 
             this.Controls.Add(this.lblInsert);
             this.Controls.Add(this.btnConfirm1);

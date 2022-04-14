@@ -13,42 +13,50 @@ using static lib.Campos;
 
 namespace Views
 {
-    public class TagMenu : BaseForm
+    public class UsuarioMenu : BaseForm
     {
-
+    
         ListView listView1;
         Button btnInsert;
         Button btnAlterar;
         Button btnExcluir;
         Button btnVoltar;
 
-        public TagMenu() : base("Tag cadastradas")
+        public UsuarioMenu() : base("Senhas cadastradas")
         {
-            ListView listView1 = new ListView();
-            listView1.Dock = DockStyle.Fill;
-            listView1.View = View.Details;
-            listView1.Sorting = SortOrder.Ascending;
+            ListView listView = new ListView();
+            listView.Dock = DockStyle.Fill;
+            listView.View = View.Details;
+            listView.Sorting = SortOrder.Ascending;
 
             // Create and initialize column headers for listView1.
             ColumnHeader list0 = new ColumnHeader();
             list0.Text = "Id";
             list0.Width = -2;
             ColumnHeader list1 = new ColumnHeader();
-            list1.Text = "Descrição";
+            list1.Text = "Nome";
             list1.Width = -2;
+            ColumnHeader list2= new ColumnHeader();
+            list2.Text = "Email";
+            list2.Width = -2;
+            ColumnHeader list3= new ColumnHeader();
+            list3.Text = "Descrição";
+            list3.Width = -2;
 
             // Add the column headers to listView1.
-            listView1.Columns.AddRange(new ColumnHeader[] 
-                {list0, list1});
+            listView.Columns.AddRange(new ColumnHeader[] 
+                {list0, list1,list2,list3});
 
 
-                // Create items and add them to myListView.
-			listView1.View = View.Details;
-			foreach(Tag item in TagController.GetTags())
+            // Create items and add them to myListView.
+			listView.View = View.Details;
+			foreach(Usuario item in UsuarioController.GetUsuarios())
             {
-                ListViewItem listTag = new ListViewItem(item.Id + "");
-                listTag.SubItems.Add(item.Descricao);	
-                listView1.Items.AddRange(new ListViewItem[]{listTag});
+                ListViewItem listUsuario= new ListViewItem(item.Id + "");
+                listUsuario.SubItems.Add(item.Nome);
+                listUsuario.SubItems.Add(item.Email);
+                listUsuario.SubItems.Add(item.Senha);	
+                listView.Items.AddRange(new ListViewItem[]{listUsuario});
             }
         
             this.btnInsert = new Button();
@@ -73,8 +81,7 @@ namespace Views
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.Location = new Point(370, 230);
             this.btnVoltar.Size = new Size(100, 30);
-            this.btnVoltar.Click += new EventHandler(this.handleVoltarClik);
-             
+            this.btnVoltar.Click += new EventHandler(this.handleVoltarClik);     
 
             this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.btnAlterar);
@@ -85,22 +92,22 @@ namespace Views
             this.Controls.Add(listView1);    
             this.Controls.Add(this.listView1);
             this.Size = new System.Drawing.Size(550, 330);
-            this.Text = "Informações do Tag:";
+            this.Text = "Informações das Usuarios:";
             }
         private void handleInsertClick(object sender, EventArgs e)
         {
-            Views.TagInsert menu = new Views.TagInsert();
+            Views.UsuarioInsert menu = new Views.UsuarioInsert();
             menu.ShowDialog();
         }
 
         private void handleAlterarClick(object sender, EventArgs e)
         {
-           Views.TagUpdate menu = new Views.TagUpdate();
+           Views.UsuarioUpdate menu = new Views.UsuarioUpdate();
             menu.ShowDialog();
         }
         private void handleExcluirClick(object sender, EventArgs e)
         {
-            Views.TagDelete menu = new Views.TagDelete();
+            Views.UsuarioDelete menu = new Views.UsuarioDelete();
             menu.ShowDialog();
         }
         private void handleVoltarClik(object sender, EventArgs e)
@@ -108,6 +115,5 @@ namespace Views
            Views.MenuPrincipal menu = new Views.MenuPrincipal();
             this.Close();
         }  
-
     }           
 }

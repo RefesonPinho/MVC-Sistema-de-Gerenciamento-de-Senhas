@@ -30,13 +30,12 @@ namespace Views
 
     public class Login : Form
     {
-        private System.ComponentModel.IContainer components = null;
 
         Campos.Field fieldUser;
         Campos.Field fieldPass;
 
         Button btnConfirm;
-        Button btnCancel;
+        Button btnSair;
 
         public Login()
         {
@@ -44,9 +43,8 @@ namespace Views
             this.fieldPass = new Campos.Field(this.Controls, "Senha", 80, true, true);
             this.fieldPass.textField.ForeColor = System.Drawing.Color.Red;
             this.btnConfirm = new Campos.ButtonForm(this.Controls, "Confirmar", 100, 180, this.handleConfirmClick);
-            this.btnCancel = new Campos.ButtonForm(this.Controls, "Cancelar", 100, 220, this.handleCancelClick);
+            this.btnSair = new Campos.ButtonForm(this.Controls, "Cancelar", 100, 220, this.handleCancelClick);
             
-            this.components = new System.ComponentModel.Container();
         }
 
         private void handleConfirmClick(object sender, EventArgs e) {
@@ -79,20 +77,17 @@ namespace Views
 
     public class MenuPrincipal : Form
     {
-        private System.ComponentModel.IContainer components = null;
 
         Label lblLogin;
 
         Button btnTag;
         Button btnCategoria;
-        Button btnProcedi;
-        Button btnEspeciali;
-        Button btnSala;
-        Button btnAgendamento;
-        Button btnCancel;
+        Button btnUsuario;
+        Button btnSenha;
+        Button btnSenhaTag;
+        Button btnSair;
 
-        Button btnCnfirm1;
-        Button btnCancel1;
+        
         public MenuPrincipal() 
         {
             this.lblLogin = new Label();
@@ -111,45 +106,39 @@ namespace Views
             this.btnCategoria.Size = new Size(100, 30);
             this.btnCategoria.Click += new EventHandler(this.handleCategoriaClick);
 
-            this.btnProcedi = new Button();
-            this.btnProcedi.Text = "Procedimento";
-            this.btnProcedi.Location = new Point(40, 100);
-            this.btnProcedi.Size = new Size(100, 30);
-            this.btnProcedi.Click += new EventHandler(this.handleProcedimentoClick);
+            this.btnUsuario = new Button();
+            this.btnUsuario.Text = "Usuario";
+            this.btnUsuario.Location = new Point(40, 100);
+            this.btnUsuario.Size = new Size(100, 30);
+            this.btnUsuario.Click += new EventHandler(this.handleUsuarioClick);
 
-            this.btnEspeciali = new Button();
-            this.btnEspeciali.Text = "Especialidade";
-            this.btnEspeciali.Location = new Point(160, 100);
-            this.btnEspeciali.Size = new Size(100, 30);
-            this.btnEspeciali.Click += new EventHandler(this.handleEspecialidadeClick);
+            this.btnSenha = new Button();
+            this.btnSenha.Text = "Senha";
+            this.btnSenha.Location = new Point(160, 100);
+            this.btnSenha.Size = new Size(100, 30);
+            this.btnSenha.Click += new EventHandler(this.handleSenhaClick);
 
-            this.btnSala = new Button();
-            this.btnSala.Text = "Sala";
-            this.btnSala.Location = new Point(40, 140);
-            this.btnSala.Size = new Size(100, 30);
-            this.btnSala.Click += new EventHandler(this.handleSalaClick);
+            this.btnSenhaTag = new Button();
+            this.btnSenhaTag.Text = "SenhaTag";
+            this.btnSenhaTag.Location = new Point(40, 140);
+            this.btnSenhaTag.Size = new Size(100, 30);
+            this.btnSenhaTag.Click += new EventHandler(this.handleSenhaTagClick);
 
-            this.btnAgendamento = new Button();
-            this.btnAgendamento.Text = "Agendamento";
-            this.btnAgendamento.Location = new Point(160, 140);
-            this.btnAgendamento.Size = new Size(100, 30);
-            this.btnAgendamento.Click += new EventHandler(this.handleAgendamentoClick);
 
-            this.btnCancel = new Button();
-            this.btnCancel.Text = "Sair";
-            this.btnCancel.Location = new Point(110, 200);
-            this.btnCancel.Size = new Size(80, 30);
-            this.btnCancel.Click += new EventHandler(this.handleCancelClick);
+            this.btnSair = new Button();
+            this.btnSair.Text = "Sair";
+            this.btnSair.Location = new Point(110, 200);
+            this.btnSair.Size = new Size(80, 30);
+            this.btnSair.Click += new EventHandler(this.handleSairClick);
 
             this.Controls.Add(this.lblLogin);
 
             this.Controls.Add(this.btnTag);
             this.Controls.Add(this.btnCategoria);
-            this.Controls.Add(this.btnProcedi);
-            this.Controls.Add(this.btnEspeciali);
-            this.Controls.Add(this.btnSala);
-            this.Controls.Add(this.btnAgendamento);
-            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnUsuario);
+            this.Controls.Add(this.btnSenha);
+            this.Controls.Add(this.btnSenhaTag);
+            this.Controls.Add(this.btnSair);
 
         }
         private void handleCategoriaClick(object sender, EventArgs e)
@@ -162,31 +151,26 @@ namespace Views
             Views.TagMenu menu = new Views.TagMenu();
             menu.ShowDialog();
         }
-        private void handleProcedimentoClick(object sender, EventArgs e)
+        private void handleUsuarioClick(object sender, EventArgs e)
+        {
+            UsuarioMenu menu = new UsuarioMenu();
+            menu.ShowDialog();
+            this.Close();
+        }
+        private void handleSenhaClick(object sender, EventArgs e)
         {
             MenuPrincipal menu = new MenuPrincipal();
             menu.ShowDialog();
             this.Close();
         }
-        private void handleEspecialidadeClick(object sender, EventArgs e)
+        private void handleSenhaTagClick(object sender, EventArgs e)
         {
             MenuPrincipal menu = new MenuPrincipal();
             menu.ShowDialog();
             this.Close();
         }
-        private void handleSalaClick(object sender, EventArgs e)
-        {
-            MenuPrincipal menu = new MenuPrincipal();
-            menu.ShowDialog();
-            this.Close();
-        }
-         private void handleAgendamentoClick(object sender, EventArgs e)
-        {
-            MenuPrincipal menu = new MenuPrincipal();
-            menu.ShowDialog();
-            this.Close();
-        }
-        private void handleCancelClick(object sender, EventArgs e)
+         
+        private void handleSairClick(object sender, EventArgs e)
         {
             this.Close();
         }

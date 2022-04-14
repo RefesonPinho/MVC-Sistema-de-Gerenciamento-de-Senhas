@@ -19,7 +19,7 @@ namespace Views
     {
         public delegate void HandleButton(object sender, EventArgs e);
 
-        private System.ComponentModel.IContainer components = null;
+       
         Label lblDelete;
         Label lblId;
         TextBox textId;
@@ -45,8 +45,6 @@ namespace Views
             this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 150, 240, this.handleCancelClick);
 
             
-            
-            this.components = new System.ComponentModel.Container();
 
             this.Controls.Add(this.lblDelete);
             this.Controls.Add(this.lblId);

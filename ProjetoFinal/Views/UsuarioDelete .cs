@@ -15,20 +15,21 @@ using lib;
 
 namespace Views
 {
-    public class TagDelete : BaseForm
+    public class UsuarioDelete : BaseForm
     {
         public delegate void HandleButton(object sender, EventArgs e);
 
+       
         Label lblDelete;
         Label lblId;
         TextBox textId;
         Button btnConfirm1;
         Button btnCancel1;
 
-        public TagDelete() : base("Deletar Tag")
+        public UsuarioDelete() : base("Deletar Usuario")
         {
             this.lblDelete = new Label();
-            this.lblDelete.Text = "Dados Tag:";
+            this.lblDelete.Text = "Dados Usuario:";
             this.lblDelete.Location = new Point(100, 50);
 
             this.lblId = new Label();
@@ -41,7 +42,9 @@ namespace Views
             textId.Size = new Size(360,20);
 
             this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 40,240, this.handleConfirmClick);
-            this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 150, 240, this.handleCancelClick);  
+            this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 150, 240, this.handleCancelClick);
+
+            
 
             this.Controls.Add(this.lblDelete);
             this.Controls.Add(this.lblId);
@@ -65,12 +68,12 @@ namespace Views
                     throw new Exception("ID inválido.");
                 }
                 
-                TagController.ExcluirTag(
+                CategoriaController.ExcluirCategoria(
                     Id
                 );
 
                 MessageBox.Show("Dados excluidos com sucesso.");
-                Views.TagMenu menu = new Views.TagMenu();
+                Views.CategoriaMenu menu = new Views.CategoriaMenu();
                 this.Close();
 
             }

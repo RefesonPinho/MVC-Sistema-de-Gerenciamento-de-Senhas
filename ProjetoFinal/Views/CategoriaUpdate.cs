@@ -19,13 +19,11 @@ namespace Views
     {
         public delegate void HandleButton(object sender, EventArgs e);
 
-        private System.ComponentModel.IContainer components = null;
-        TextBox text;
         Label lblUpdate;
         Label lblId;
         Label lblNome;
         Label lblDescricao;
-         TextBox textNome;
+        TextBox textNome;
         TextBox textDescricao;
         TextBox textId;
         Button btnConfirm1;
@@ -33,30 +31,42 @@ namespace Views
 
         public CategoriaUpdate() : base("Alterar Tags")
         {
-            this.lblUpdate = new Label();
-            this.lblUpdate.Text = "Dados Tag:";
-            this.lblUpdate.Location = new Point(100, 50);
+            this.lblUpdate = new Label
+            {
+                Text = "Dados Tag:",
+                Location = new Point(100, 50)
+            };
 
-            this.lblId = new Label();
-            this.lblId.Text = " Digite o Id que deseja alterar ";
-            this.lblId.Location = new Point(80, 100);
-            this.lblId.Size = new Size(240,20);
+            this.lblId = new Label
+            {
+                Text = " Digite o Id que deseja alterar ",
+                Location = new Point(80, 100),
+                Size = new Size(240, 20)
+            };
 
-            textId = new TextBox();
-            textId.Location = new Point(10,125);
-            textId.Size = new Size(360,20);
+            textId = new TextBox
+            {
+                Location = new Point(10, 125),
+                Size = new Size(360, 20)
+            };
 
-            this.lblNome = new Label();
-            this.lblNome.Text = " Nome";
-            this.lblNome.Location = new Point(120, 150);
+            this.lblNome = new Label
+            {
+                Text = " Nome",
+                Location = new Point(120, 150)
+            };
 
-            textNome = new TextBox();
-            textNome.Location = new Point(10,175);
-            textNome.Size = new Size(360,20);
-            
-            this.lblDescricao = new Label();
-            this.lblDescricao.Text = " Descricao";
-            this.lblDescricao.Location = new Point(120, 200);
+            textNome = new TextBox
+            {
+                Location = new Point(10, 175),
+                Size = new Size(360, 20)
+            };
+
+            this.lblDescricao = new Label
+            {
+                Text = " Descricao",
+                Location = new Point(120, 200)
+            };
 
             textDescricao = new TextBox();
             textDescricao.Location = new Point(10,225);
@@ -67,7 +77,7 @@ namespace Views
 
             
             
-            this.components = new System.ComponentModel.Container();
+           
 
             this.Controls.Add(this.lblUpdate);
             this.Controls.Add(this.lblDescricao);
@@ -85,7 +95,7 @@ namespace Views
                   
             try
             {
-                int Id = int.Parse(textId.Text);
+                int Id;
                 try
                 {
                     Id = int.Parse(textId.Text); 
@@ -106,9 +116,9 @@ namespace Views
                 this.Close();
 
             }
-            catch (System.Exception)
+            catch (System.Exception err)
             {
-                MessageBox.Show("Não foi possível inserir os dados.");
+                MessageBox.Show($"Não foi possível inserir os dados. {err.Message}");
             }              
         }
         
