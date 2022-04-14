@@ -59,18 +59,25 @@ namespace Controllers
 
         public static Categoria GetCategoria(int Id)
         {
-            Categoria categoria = (
-                from Categoria in Categoria.GetCategorias()
-                    where Categoria.Id == Id
-                    select Categoria
-            ).First();
+            try 
+            {
+                Categoria categoria = (
+                    from Categoria in Categoria.GetCategorias()
+                        where Categoria.Id == Id
+                        select Categoria
+                ).First();
 
-            if (categoria == null)
+                if (categoria == null)
+                {
+                    throw new Exception("Categoria não encontrada");
+                }
+
+                return categoria;
+            }
+            catch
             {
                 throw new Exception("Categoria não encontrada");
             }
-
-            return categoria;
         }
     }
 }

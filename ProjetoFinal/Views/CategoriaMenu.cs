@@ -15,8 +15,7 @@ namespace Views
 {
     public class CategoriaMenu : BaseForm
     {
-        private System.ComponentModel.IContainer components = null;
-
+    
         ListView listView1;
         Button btnInsert;
         Button btnAlterar;
@@ -78,9 +77,7 @@ namespace Views
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.Location = new Point(370, 230);
             this.btnVoltar.Size = new Size(100, 30);
-            this.btnVoltar.Click += new EventHandler(this.handleVoltarClik);
-            
-            this.components = new System.ComponentModel.Container();
+            this.btnVoltar.Click += new EventHandler(this.handleVoltarClik);     
 
             this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.btnAlterar);

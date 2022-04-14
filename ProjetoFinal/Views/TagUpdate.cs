@@ -19,8 +19,6 @@ namespace Views
     {
         public delegate void HandleButton(object sender, EventArgs e);
 
-        private System.ComponentModel.IContainer components = null;
-        TextBox text;
         Label lblUpdate;
         Label lblId;
         Label lblDescricao;
@@ -31,33 +29,39 @@ namespace Views
 
         public TagUpdate() : base("Alterar Tags")
         {
-            this.lblUpdate = new Label();
-            this.lblUpdate.Text = "Dados Tag:";
-            this.lblUpdate.Location = new Point(100, 50);
+            lblUpdate = new Label
+            {
+                Text = "Dados Tag:",
+                Location = new Point(100, 50)
+            };
 
-            this.lblId = new Label();
-            this.lblId.Text = " Digite o Id deseja alterar ";
-            this.lblId.Location = new Point(80, 100);
-            this.lblId.Size = new Size(240,15);
+            lblId = new Label
+            {
+                Text = " Digite o Id deseja alterar ",
+                Location = new Point(80, 100),
+                Size = new Size(240, 15)
+            };
 
-            textId = new TextBox();
-            textId.Location = new Point(10,125);
-            textId.Size = new Size(360,20);
-            
-            this.lblDescricao = new Label();
-            this.lblDescricao.Text = " Descricao";
-            this.lblDescricao.Location = new Point(160, 150);
+            textId = new TextBox
+            {
+                Location = new Point(10, 125),
+                Size = new Size(360, 20)
+            };
 
-            textDescricao = new TextBox();
-            textDescricao.Location = new Point(10,175);
-            textDescricao.Size = new Size(360,20);
+            lblDescricao = new Label
+            {
+                Text = " Descricao",
+                Location = new Point(160, 150)
+            };
+
+            textDescricao = new TextBox
+            {
+                Location = new Point(10, 175),
+                Size = new Size(360, 20)
+            };
 
             this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 40,240, this.handleConfirmClick);
             this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 150, 240, this.handleCancelClick);
-
-            
-            
-            this.components = new System.ComponentModel.Container();
 
             this.Controls.Add(this.lblUpdate);
             this.Controls.Add(this.lblDescricao);
