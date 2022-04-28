@@ -22,7 +22,7 @@ namespace Views
         Button btnExcluir;
         Button btnVoltar;
 
-        public UsuarioMenu() : base("Senhas cadastradas")
+        public UsuarioMenu() : base(" Usuários cadastrados")
         {
             ListView listView = new ListView();
             listView.Dock = DockStyle.Fill;
@@ -40,7 +40,7 @@ namespace Views
             list2.Text = "Email";
             list2.Width = -2;
             ColumnHeader list3= new ColumnHeader();
-            list3.Text = "Descrição";
+            list3.Text = "Senha";
             list3.Width = -2;
 
             // Add the column headers to listView1.
@@ -89,8 +89,7 @@ namespace Views
             this.Controls.Add(this.btnVoltar);
 
                 // Initialize the form.
-            this.Controls.Add(listView1);    
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(listView);    
             this.Size = new System.Drawing.Size(550, 330);
             this.Text = "Informações das Usuarios:";
             }
@@ -113,7 +112,7 @@ namespace Views
         private void handleVoltarClik(object sender, EventArgs e)
         {
            Views.MenuPrincipal menu = new Views.MenuPrincipal();
-            this.Close();
+            this.Close();       
         }  
     }           
 }

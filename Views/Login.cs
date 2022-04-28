@@ -155,7 +155,7 @@ namespace Views
         {
             UsuarioMenu menu = new UsuarioMenu();
             menu.ShowDialog();
-            this.Close();
+            
         }
         private void handleSenhaClick(object sender, EventArgs e)
         {

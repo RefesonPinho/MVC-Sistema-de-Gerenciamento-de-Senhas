@@ -43,7 +43,7 @@ namespace Views
             this.lblId.Size = new Size(240,15);
 
             textId = new TextBox();
-            textId.Location = new Point(10,125);
+            textId.Location = new Point(10,75);
             textId.Size = new Size(360,20);
 
             this.lblNome = new Label();
@@ -71,8 +71,8 @@ namespace Views
             textSenha.Location = new Point(10,225);
             textSenha.Size = new Size(360,20);
 
-            this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 40,320, this.handleConfirmClick);
-            this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 150, 320, this.handleCancelClick);
+            this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 40,260, this.handleConfirmClick);
+            this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 150, 260, this.handleCancelClick);
 
 
 
@@ -90,8 +90,8 @@ namespace Views
             
                
         }
-        private void handleConfirmClick(object sender, EventArgs e) {
-                  
+        private void handleConfirmClick(object sender, EventArgs e) 
+        {       
             try
             {
                 int Id;

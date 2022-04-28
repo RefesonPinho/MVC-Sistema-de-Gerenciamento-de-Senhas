@@ -73,8 +73,8 @@ namespace Views
             
                
         }
-        private void handleConfirmClick(object sender, EventArgs e) {
-                  
+        private void handleConfirmClick(object sender, EventArgs e) 
+        {     
             try
             {
                 int Id = int.Parse(textId.Text);
@@ -97,9 +97,9 @@ namespace Views
                 this.Close();
 
             }
-            catch (System.Exception)
+            catch (System.Exception err)
             {
-                MessageBox.Show("Não foi possível inserir os dados.");
+               MessageBox.Show($"Não foi possível inserir os dados. {err.Message}");
             }              
         }
         
