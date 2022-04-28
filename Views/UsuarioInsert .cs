@@ -22,8 +22,8 @@ namespace Views
         Label lblInsert;
         Label lblNome;
         TextBox textNome;
-        Label lblDescricao;
-        TextBox textDescricao;
+        Label lblEmail;
+        TextBox textEmail;
         Label lblSenha;
         TextBox textSenha;
         Button btnConfirm1;
@@ -44,13 +44,13 @@ namespace Views
             textNome.Location = new Point(10,125);
             textNome.Size = new Size(360,20);
             
-            this.lblDescricao = new Label();
-            this.lblDescricao.Text = " Descricao";
-            this.lblDescricao.Location = new Point(120, 150);
+            this.lblEmail = new Label();
+            this.lblEmail.Text = " Email";
+            this.lblEmail.Location = new Point(120, 150);
 
-            textDescricao = new TextBox();
-            textDescricao.Location = new Point(10,175);
-            textDescricao.Size = new Size(360,20);
+            textEmail = new TextBox();
+            textEmail.Location = new Point(10,175);
+            textEmail.Size = new Size(360,20);
 
             this.lblSenha = new Label();
             this.lblSenha.Text = " Senha";
@@ -60,20 +60,20 @@ namespace Views
             textSenha.Location = new Point(10,225);
             textSenha.Size = new Size(360,20);
 
-            this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 40,240, this.handleConfirmClick);
-            this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 150, 240, this.handleCancelClick);
+            this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 40,270, this.handleConfirmClick);
+            this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 150, 270, this.handleCancelClick);
 
             this.Controls.Add(this.lblInsert);
             this.Controls.Add(this.btnConfirm1);
             this.Controls.Add(this.btnCancel1);
             this.Controls.Add(this.lblNome);
             this.Controls.Add(this.lblSenha);
-            this.Controls.Add(this.lblDescricao);
+            this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.btnConfirm1);
             this.Controls.Add(this.btnCancel1);
             this.Controls.Add(this.textNome);
             this.Controls.Add(this.textSenha);
-            this.Controls.Add(this.textDescricao);
+            this.Controls.Add(this.textEmail);
                
         }
         private void handleConfirmClick(object sender, EventArgs e) 
@@ -90,8 +90,9 @@ namespace Views
                 if (confirm == DialogResult.Yes) {
                     UsuarioController.InserirUsuario(
                         textNome.Text,
-                        textSenha.Text,
-                        textDescricao.Text
+                        textEmail.Text,
+                        textSenha.Text
+                        
                     );
                     MessageBox.Show("Dados inseridos com sucesso.");
                     Views.UsuarioMenu menu = new Views.UsuarioMenu();

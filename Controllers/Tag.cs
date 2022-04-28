@@ -51,18 +51,25 @@ namespace Controllers
 
         public static Tag GetTag(int Id)
         {
-            Tag tag = (
-                from Tag in Tag.GetTags()
-                    where Tag.Id == Id
-                    select Tag
-            ).First();
-
-            if (tag == null)
+            try 
             {
-                throw new Exception("Tag não encontrado");
-            }
+                Tag tag = (
+                    from Tag in Tag.GetTags()
+                        where Tag.Id == Id
+                        select Tag
+                ).First();
 
-            return tag;
+                if (tag == null)
+                {
+                    throw new Exception("Tag não encontrada");
+                }
+
+                return tag;
+            }
+            catch
+            {
+                throw new Exception("Tag não encontrada");
+            }
         }
     }
 }

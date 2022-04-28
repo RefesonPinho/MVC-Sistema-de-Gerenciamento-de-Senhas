@@ -54,7 +54,8 @@ namespace Views
             
                
         }
-        private void handleConfirmClick(object sender, EventArgs e) {
+        private void handleConfirmClick(object sender, EventArgs e) 
+        {
                   
             try
             {
@@ -67,19 +68,26 @@ namespace Views
                 {
                     throw new Exception("ID inválido.");
                 }
-                
-                CategoriaController.ExcluirCategoria(
-                    Id
+
+                DialogResult confirm = MessageBox.Show(
+                    "Deseja realmente Excluir esse item?",
+                    "CONFIRMAR",
+                    MessageBoxButtons.YesNo
                 );
 
-                MessageBox.Show("Dados excluidos com sucesso.");
-                Views.CategoriaMenu menu = new Views.CategoriaMenu();
-                this.Close();
-
+                if (confirm == DialogResult.Yes) {
+                    UsuarioController.ExcluirUsuario(
+                        Id
+                        
+                    );
+                    MessageBox.Show("Dados excluidos com sucesso.");
+                    Views.UsuarioMenu menu = new Views.UsuarioMenu();
+                    this.Close();
+                }  
             }
-            catch (System.Exception)
+            catch (System.Exception err)
             {
-                MessageBox.Show("Não foi possível inserir os dados.");
+                MessageBox.Show($"Não foi possível inserir os dados. {err.Message}");
             }              
         }
         

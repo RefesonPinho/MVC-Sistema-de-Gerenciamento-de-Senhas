@@ -46,8 +46,9 @@ namespace Controllers
             string altNome = !String.IsNullOrEmpty(Nome) ? Nome : Usuario.Nome ;
             string altEmail = !String.IsNullOrEmpty(Email) ? Email : Usuario.Email ;
             string altSenha = !String.IsNullOrEmpty(Senha) ? Senha : Usuario.Senha ;
+            string CryptSenha = BCrypt.Net.BCrypt.HashPassword(altSenha);
 
-            Usuario.AlterarUsuario(Id, altNome, altEmail, altSenha);
+            Usuario.AlterarUsuario(Id, altNome, altEmail, CryptSenha);
 
             return Usuario;
         }
@@ -78,14 +79,14 @@ namespace Controllers
 
                 if (usuario == null)
                 {
-                    throw new Exception("Categoria não encontrada");
+                    throw new Exception("Usuário não encontrado");
                 }
 
                 return usuario;
             }
             catch
             {
-                throw new Exception("Categoria não encontrada");
+                throw new Exception("Usuario não encontrado");
             }
         }
     }

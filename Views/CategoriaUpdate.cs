@@ -91,8 +91,8 @@ namespace Views
             
                
         }
-        private void handleConfirmClick(object sender, EventArgs e) {
-                  
+        private void handleConfirmClick(object sender, EventArgs e) 
+        {
             try
             {
                 int Id;
