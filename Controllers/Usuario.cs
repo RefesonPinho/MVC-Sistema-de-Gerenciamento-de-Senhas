@@ -37,7 +37,7 @@ namespace Controllers
         public static Usuario AlterarUsuario(
             int Id,
             string Nome,
-             string Email,
+            string Email,
             string Senha
         )
         {
