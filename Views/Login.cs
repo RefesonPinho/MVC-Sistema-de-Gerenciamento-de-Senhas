@@ -159,9 +159,9 @@ namespace Views
         }
         private void handleSenhaClick(object sender, EventArgs e)
         {
-            MenuPrincipal menu = new MenuPrincipal();
+            SenhaMenu menu = new SenhaMenu();
             menu.ShowDialog();
-            this.Close();
+            
         }
         private void handleSenhaTagClick(object sender, EventArgs e)
         {
