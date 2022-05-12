@@ -16,7 +16,7 @@ namespace Views
     public class UsuarioMenu : BaseForm
     {
     
-        ListView listView1;
+        ListView listView;
         Button btnInsert;
         Button btnAlterar;
         Button btnExcluir;
@@ -24,7 +24,7 @@ namespace Views
 
         public UsuarioMenu() : base(" Usuários cadastrados")
         {
-            ListView listView = new ListView();
+            listView = new ListView();
             listView.Dock = DockStyle.Fill;
             listView.View = View.Details;
             listView.Sorting = SortOrder.Ascending;
