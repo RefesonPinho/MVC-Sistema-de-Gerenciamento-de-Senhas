@@ -16,7 +16,7 @@ namespace Views
     public class SenhaMenu : BaseForm
     {
     
-        ListView listView1;
+        ListView listView;
         Button btnInsert;
         Button btnAlterar;
         Button btnExcluir;
@@ -67,29 +67,37 @@ namespace Views
                 listSenha.SubItems.Add(item.Procedimento);		
                 listView.Items.AddRange(new ListViewItem[]{listSenha});
             }
-        
-            this.btnInsert = new Button();
-            this.btnInsert.Text = "Inserir";
-            this.btnInsert.Location = new Point(40, 230);
-            this.btnInsert.Size = new Size(100, 30);
+
+            this.btnInsert = new Button
+            {
+                Text = "Inserir",
+                Location = new Point(40, 230),
+                Size = new Size(100, 30)
+            };
             this.btnInsert.Click += new EventHandler(this.handleInsertClick);
 
-            this.btnAlterar = new Button();
-            this.btnAlterar.Text = "Alterar";
-            this.btnAlterar.Location = new Point(150, 230);
-            this.btnAlterar.Size = new Size(100, 30);
+            this.btnAlterar = new Button
+            {
+                Text = "Alterar",
+                Location = new Point(150, 230),
+                Size = new Size(100, 30)
+            };
             this.btnAlterar.Click += new EventHandler(this.handleAlterarClick);
 
-            this.btnExcluir = new Button();
-            this.btnExcluir.Text = "Excluir";
-            this.btnExcluir.Location = new Point(260, 230);
-            this.btnExcluir.Size = new Size(100, 30);
+            this.btnExcluir = new Button
+            {
+                Text = "Excluir",
+                Location = new Point(260, 230),
+                Size = new Size(100, 30)
+            };
             this.btnExcluir.Click += new EventHandler(this.handleExcluirClick);
 
-            this.btnVoltar = new Button();
-            this.btnVoltar.Text = "Voltar";
-            this.btnVoltar.Location = new Point(370, 230);
-            this.btnVoltar.Size = new Size(100, 30);
+            this.btnVoltar = new Button
+            {
+                Text = "Voltar",
+                Location = new Point(370, 230),
+                Size = new Size(100, 30)
+            };
             this.btnVoltar.Click += new EventHandler(this.handleVoltarClik);     
 
             this.Controls.Add(this.btnInsert);

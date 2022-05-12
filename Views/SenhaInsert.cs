@@ -3,15 +3,10 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Threading;
-using System.IO;
 using Models;
 using Controllers;
 using static lib.Campos;
 using lib;
-
 
 namespace Views
 {
@@ -19,101 +14,155 @@ namespace Views
     {
         public delegate void HandleButton(object sender, EventArgs e);
 
-        Label lblInsert;
-        Label lblNome;
-        TextBox textNome;
-        Label lblCategoria;
-        TextBox textCategoria;
-        Label lblUrl;
-        TextBox textUrl;
-        Label lblUsuario;
-        TextBox textUsuario;
-        Label lblSenha;
-        TextBox textSenha;
-        Label lblProcedimento;
-        TextBox TextProcedimento;
-        Button btnConfirm1;
-        Button btnCancel1;
+        readonly Label lblInsert;
+        readonly Label lblNome;
+        readonly TextBox textNome;
+        readonly Label lblCategoria;
+        readonly ComboBox comboBoxCategoria;
+        readonly Label lblUrl;
+        readonly TextBox textUrl;
+        readonly Label lblUsuario;
+        readonly TextBox textUsuario;
+        readonly Label lblSenha;
+        readonly TextBox textSenha;
+        readonly Label lblProcedimento;
+        readonly TextBox textProcedimento;
+        readonly Label lblTag;
+        CheckBox tag;
+        readonly Button btnConfirm;
+        readonly Button btnCancel;
 
         public SenhaInsert() : base("Inserir Senha")
         {
-            this.lblInsert = new Label();
-            this.lblInsert.Text = "Dados Senha:";
-            this.lblInsert.Location = new Point(100, 50);
+            this.lblInsert = new Label {
+                Text = "Dados Senha:",
+                Location = new Point(100, 50)
+            };
 
-            this.lblNome = new Label();
-            this.lblNome.Text = " Digite o Nome ";
-            this.lblNome.Location = new Point(120, 100);
-            this.lblNome.Size = new Size(240,15);
+            this.lblNome = new Label
+            {
+                Text = " Digite o Nome ",
+                Location = new Point(120, 100),
+                Size = new Size(240, 15)
+            };
 
-            textNome = new TextBox();
-            textNome.Location = new Point(10,125);
-            textNome.Size = new Size(360,20);
+            textNome = new TextBox
+            {
+                Location = new Point(10, 125),
+                Size = new Size(360, 20)
+            };
+
+            this.lblCategoria = new Label
+            {
+                Text = " Categoria",
+                Location = new Point(120, 150)
+            };
+
+            string[] categoriasSuggestion = CategoriaController
+                .GetCategorias()
+                .Select(categoria => categoria.ToSuggestion())
+                .ToArray();
+            this.comboBoxCategoria = new ComboBox{
+                Location = new Point(10, 175),
+                Size = new Size(360, 20),
+                DropDownStyle = ComboBoxStyle.DropDownList
+            };
+            this.comboBoxCategoria.Items.AddRange(categoriasSuggestion);
+
+            this.lblUrl = new Label
+            {
+                Text = " Url",
+                Location = new Point(120, 200)
+            };
+
+            textUrl = new TextBox
+            {
+                Location = new Point(10, 225),
+                Size = new Size(360, 20)
+            };
+
+            this.lblUsuario = new Label
+            {
+                Text = " Usuario",
+                Location = new Point(120, 250)
+            };
+
+            textUsuario = new TextBox
+            {
+                Location = new Point(10, 275),
+                Size = new Size(360, 20)
+            };
+
+            this.lblSenha = new Label
+            {
+                Text = " Senha",
+                Location = new Point(120, 300)
+            };
+
+            textSenha = new TextBox
+            {
+                Location = new Point(10, 325),
+                Size = new Size(360, 20)
+            };
+
+            this.lblProcedimento = new Label
+            {
+                Text = " Procedimento",
+                Location = new Point(120, 350)
+            };
+
+            textProcedimento = new TextBox
+            {
+                Location = new Point(10, 375),
+                ClientSize = new Size(360, 450)
+            };
+
+            this.lblTag = new Label
+            {
+                Text = " Tags",
+                Location = new Point(120, 400)
+            };
+
+
+            // Create and initialize a CheckBox.   
             
-            this.lblCategoria = new Label();
-            this.lblCategoria.Text = " Categoria";
-            this.lblCategoria.Location = new Point(120, 150);
+            CheckBox tag = new CheckBox
+            {
+                // Make the check box control appear as a toggle button.
+                Appearance = Appearance.Button,
+                Location = new Point(10, 425),
+                Size = new Size(360, 20),
 
-            textCategoria = new TextBox();
-            textCategoria.Location = new Point(10,175);
-            textCategoria.Size = new Size(360,20);
+                // Turn off the update of the display on the click of the control.
+                AutoCheck = false
+            };
 
-            this.lblUrl = new Label();
-            this.lblUrl.Text = " Url";
-            this.lblUrl.Location = new Point(120, 200);
 
-            textUrl = new TextBox();
-            textUrl.Location = new Point(10,225);
-            textUrl.Size = new Size(360,20);
-
-            this.lblUsuario = new Label();
-            this.lblUsuario.Text = " Usuario";
-            this.lblUsuario.Location = new Point(120, 250);
-
-            textUsuario = new TextBox();
-            textUsuario.Location = new Point(10,275);
-            textUsuario.Size = new Size(360,20);
-
-            this.lblSenha = new Label();
-            this.lblSenha.Text = " Senha";
-            this.lblSenha.Location = new Point(120, 300);
-
-            textSenha = new TextBox();
-            textSenha.Location = new Point(10,325);
-            textSenha.Size = new Size(360,20);
-
-            this.lblProcedimento = new Label();
-            this.lblProcedimento.Text = " Procedimento";
-            this.lblProcedimento.Location = new Point(120, 350);
-
-            TextProcedimento = new TextBox();
-            TextProcedimento.Location = new Point(10,375);
-            TextProcedimento.ClientSize = new Size(360, 450);
-            
-
-            this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 40,420, this.handleConfirmClick);
-            this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 150, 420, this.handleCancelClick);
 
             this.Controls.Add(this.lblInsert);
-            this.Controls.Add(this.btnConfirm1);
-            this.Controls.Add(this.btnCancel1);
             this.Controls.Add(this.lblNome);
-            this.Controls.Add(this.lblCategoria);
-            this.Controls.Add(this.lblUrl);
-            this.Controls.Add(this.lblUsuario);
-            this.Controls.Add(this.lblSenha);
-            this.Controls.Add(this.lblProcedimento);
             this.Controls.Add(this.textNome);
-            this.Controls.Add(this.textCategoria);
+            this.Controls.Add(this.lblCategoria);
+            this.Controls.Add(this.comboBoxCategoria);
+            this.Controls.Add(this.lblUrl);
             this.Controls.Add(this.textUrl);
+            this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.textUsuario);
+            this.Controls.Add(this.lblSenha);
             this.Controls.Add(this.textSenha);
-            this.Controls.Add(this.TextProcedimento);
-               
+            this.Controls.Add(this.lblProcedimento);
+            this.Controls.Add(this.textProcedimento);
+            this.Controls.Add(this.lblTag);
+            this.Controls.Add(this.tag);
+            
+            this.btnConfirm = new ButtonForm(this.Controls, "Confirmar", 40,480, this.handleConfirmClick);
+            this.btnCancel = new ButtonForm(this.Controls, "Cancelar", 150, 480, this.handleCancelClick);
+ 
         }
         private void handleConfirmClick(object sender, EventArgs e) 
         {
-            int CategoriaId = int.Parse(textCategoria.Text);     
+            string[] comboValue = comboBoxCategoria.Text.Split(" ");
+            int CategoriaId = int.Parse(comboValue[0]);
             try
             {
                 DialogResult confirm = MessageBox.Show(
@@ -129,21 +178,22 @@ namespace Views
                         textUrl.Text,
                         textUsuario.Text,
                         textSenha.Text,
-                        TextProcedimento.Text
+                        textProcedimento.Text
                         
                     );
                     MessageBox.Show("Dados inseridos com sucesso.");
-                    Views.SenhaMenu menu = new Views.SenhaMenu();
+                    SenhaMenu menu = new SenhaMenu();
                     this.Close();
                 }
 
 
             }
-            catch (System.Exception)
+            catch
             {
                 MessageBox.Show("Não foi possível inserir os dados.");
             }              
         }
+
 
         private void handleCancelClick(object sender, EventArgs e)
         {

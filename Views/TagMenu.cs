@@ -15,8 +15,7 @@ namespace Views
 {
     public class TagMenu : BaseForm
     {
-
-        ListView listView1;
+        readonly ListView listView;
         Button btnInsert;
         Button btnAlterar;
         Button btnExcluir;
@@ -24,31 +23,31 @@ namespace Views
 
         public TagMenu() : base("Tag cadastradas")
         {
-            ListView listView1 = new ListView();
-            listView1.Dock = DockStyle.Fill;
-            listView1.View = View.Details;
-            listView1.Sorting = SortOrder.Ascending;
+            this.listView = new ListView();
+            this.listView.Dock = DockStyle.Fill;
+            this.listView.View = View.Details;
+            this.listView.Sorting = SortOrder.Ascending;
 
             // Create and initialize column headers for listView1.
-            ColumnHeader list0 = new ColumnHeader();
-            list0.Text = "Id";
-            list0.Width = -2;
-            ColumnHeader list1 = new ColumnHeader();
-            list1.Text = "Descrição";
-            list1.Width = -2;
+            ColumnHeader listId = new ColumnHeader();
+            listId.Text = "Id";
+            listId.Width = -2;
+            ColumnHeader listDescricao = new ColumnHeader();
+            listDescricao.Text = "Descrição";
+            listDescricao.Width = -2;
 
             // Add the column headers to listView1.
-            listView1.Columns.AddRange(new ColumnHeader[] 
-                {list0, list1});
+            this.listView.Columns.AddRange(new ColumnHeader[] 
+                {listId, listDescricao});
 
 
                 // Create items and add them to myListView.
-			listView1.View = View.Details;
+			this.listView.View = View.Details;
 			foreach(Tag item in TagController.GetTags())
             {
                 ListViewItem listTag = new ListViewItem(item.Id + "");
                 listTag.SubItems.Add(item.Descricao);	
-                listView1.Items.AddRange(new ListViewItem[]{listTag});
+                this.listView.Items.AddRange(new ListViewItem[]{listTag});
             }
         
             this.btnInsert = new Button();
@@ -82,8 +81,7 @@ namespace Views
             this.Controls.Add(this.btnVoltar);
 
                 // Initialize the form.
-            this.Controls.Add(listView1);    
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listView);
             this.Size = new System.Drawing.Size(550, 330);
             this.Text = "Informações do Tag:";
             }
