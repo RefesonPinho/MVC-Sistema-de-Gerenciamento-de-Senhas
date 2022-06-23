@@ -16,25 +16,32 @@ namespace Views
     public class TagMenu : BaseForm
     {
         readonly ListView listView;
-        Button btnInsert;
-        Button btnAlterar;
-        Button btnExcluir;
-        Button btnVoltar;
+        readonly Button btnInsert;
+        readonly Button btnAlterar;
+        readonly Button btnExcluir;
+        readonly Button btnVoltar;
 
         public TagMenu() : base("Tag cadastradas")
         {
-            this.listView = new ListView();
-            this.listView.Dock = DockStyle.Fill;
-            this.listView.View = View.Details;
-            this.listView.Sorting = SortOrder.Ascending;
+            this.ClientSize = new System.Drawing.Size(400,700);
+            this.listView = new ListView
+            {
+                Dock = DockStyle.Fill,
+                View = View.Details,
+                Sorting = SortOrder.Ascending
+            };
 
             // Create and initialize column headers for listView1.
-            ColumnHeader listId = new ColumnHeader();
-            listId.Text = "Id";
-            listId.Width = -2;
-            ColumnHeader listDescricao = new ColumnHeader();
-            listDescricao.Text = "Descrição";
-            listDescricao.Width = -2;
+            ColumnHeader listId = new ColumnHeader
+            {
+                Text = "Id",
+                Width = -2
+            };
+            ColumnHeader listDescricao = new ColumnHeader
+            {
+                Text = "Descrição",
+                Width = -2
+            };
 
             // Add the column headers to listView1.
             this.listView.Columns.AddRange(new ColumnHeader[] 
@@ -49,29 +56,37 @@ namespace Views
                 listTag.SubItems.Add(item.Descricao);	
                 this.listView.Items.AddRange(new ListViewItem[]{listTag});
             }
-        
-            this.btnInsert = new Button();
-            this.btnInsert.Text = "Inserir";
-            this.btnInsert.Location = new Point(40, 230);
-            this.btnInsert.Size = new Size(100, 30);
+
+            this.btnInsert = new Button
+            {
+                Text = "Inserir",
+                Location = new Point(40, 230),
+                Size = new Size(100, 30)
+            };
             this.btnInsert.Click += new EventHandler(this.handleInsertClick);
 
-            this.btnAlterar = new Button();
-            this.btnAlterar.Text = "Alterar";
-            this.btnAlterar.Location = new Point(150, 230);
-            this.btnAlterar.Size = new Size(100, 30);
+            this.btnAlterar = new Button
+            {
+                Text = "Alterar",
+                Location = new Point(150, 230),
+                Size = new Size(100, 30)
+            };
             this.btnAlterar.Click += new EventHandler(this.handleAlterarClick);
 
-            this.btnExcluir = new Button();
-            this.btnExcluir.Text = "Excluir";
-            this.btnExcluir.Location = new Point(260, 230);
-            this.btnExcluir.Size = new Size(100, 30);
+            this.btnExcluir = new Button
+            {
+                Text = "Excluir",
+                Location = new Point(260, 230),
+                Size = new Size(100, 30)
+            };
             this.btnExcluir.Click += new EventHandler(this.handleExcluirClick);
 
-            this.btnVoltar = new Button();
-            this.btnVoltar.Text = "Voltar";
-            this.btnVoltar.Location = new Point(370, 230);
-            this.btnVoltar.Size = new Size(100, 30);
+            this.btnVoltar = new Button
+            {
+                Text = "Voltar",
+                Location = new Point(370, 230),
+                Size = new Size(100, 30)
+            };
             this.btnVoltar.Click += new EventHandler(this.handleVoltarClik);
              
 

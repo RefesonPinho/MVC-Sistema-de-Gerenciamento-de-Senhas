@@ -28,12 +28,13 @@ namespace Views
         readonly Label lblProcedimento;
         readonly TextBox textProcedimento;
         readonly Label lblTag;
-        CheckBox tag;
+        readonly CheckedListBox checkListBoxtag;
         readonly Button btnConfirm;
         readonly Button btnCancel;
 
         public SenhaInsert() : base("Inserir Senha")
         {
+            this.ClientSize = new System.Drawing.Size(400,700);
             this.lblInsert = new Label {
                 Text = "Dados Senha:",
                 Location = new Point(100, 50)
@@ -124,20 +125,22 @@ namespace Views
             };
 
 
-            // Create and initialize a CheckBox.   
-            
-            CheckBox tag = new CheckBox
-            {
-                // Make the check box control appear as a toggle button.
-                Appearance = Appearance.Button,
+            // Create and initialize a CheckBox.
+
+            string[] tagSuggestion = TagController
+                .GetTags()
+                .Select(Tag => Tag.ToSuggestion())
+                .ToArray();
+            this.checkListBoxtag = new CheckedListBox{
                 Location = new Point(10, 425),
-                Size = new Size(360, 20),
-
-                // Turn off the update of the display on the click of the control.
-                AutoCheck = false
+                Size = new Size(360, 100),
+                
             };
+            checkListBoxtag.Items.AddRange(tagSuggestion);
 
+            
 
+            
 
             this.Controls.Add(this.lblInsert);
             this.Controls.Add(this.lblNome);
@@ -153,10 +156,12 @@ namespace Views
             this.Controls.Add(this.lblProcedimento);
             this.Controls.Add(this.textProcedimento);
             this.Controls.Add(this.lblTag);
-            this.Controls.Add(this.tag);
+            this.Controls.Add(this.checkListBoxtag);
+            this.Controls.Add(this.btnConfirm);
+            this.Controls.Add(this.btnCancel);
             
-            this.btnConfirm = new ButtonForm(this.Controls, "Confirmar", 40,480, this.handleConfirmClick);
-            this.btnCancel = new ButtonForm(this.Controls, "Cancelar", 150, 480, this.handleCancelClick);
+            this.btnConfirm = new ButtonForm(this.Controls, "Confirmar", 80,600, this.handleConfirmClick);
+            this.btnCancel = new ButtonForm(this.Controls, "Cancelar", 190, 600, this.handleCancelClick);
  
         }
         private void handleConfirmClick(object sender, EventArgs e) 
@@ -179,6 +184,7 @@ namespace Views
                         textUsuario.Text,
                         textSenha.Text,
                         textProcedimento.Text
+
                         
                     );
                     MessageBox.Show("Dados inseridos com sucesso.");

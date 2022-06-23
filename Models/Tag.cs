@@ -24,6 +24,10 @@ namespace Models
             db.SaveChanges();
         }
 
+        public string ToSuggestion() {
+            return $"{this.Id} - {this.Descricao}";
+        }
+
         public override string ToString()
         {
             return $"\n ---------------------------------------"

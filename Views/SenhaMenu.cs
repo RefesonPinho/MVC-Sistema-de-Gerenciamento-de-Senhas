@@ -15,40 +15,52 @@ namespace Views
 {
     public class SenhaMenu : BaseForm
     {
-    
-        ListView listView;
-        Button btnInsert;
-        Button btnAlterar;
-        Button btnExcluir;
-        Button btnVoltar;
+        readonly Button btnInsert;
+        readonly Button btnAlterar;
+        readonly Button btnExcluir;
+        readonly Button btnVoltar;
         internal static readonly object listSenha;
 
         public SenhaMenu() : base(" Senhas cadastradas")
         {
-            ListView listView = new ListView();
-            listView.Dock = DockStyle.Fill;
-            listView.View = View.Details;
-            listView.Sorting = SortOrder.Ascending;
+            ListView listView = new ListView
+            {
+                Dock = DockStyle.Fill,
+                View = View.Details,
+                Sorting = SortOrder.Ascending
+            };
 
             // Create and initialize column headers for listView1.
-            ColumnHeader list0 = new ColumnHeader();
-            list0.Text = "Id";
-            list0.Width = -2;
-            ColumnHeader list1 = new ColumnHeader();
-            list1.Text = "Nome";
-            list1.Width = -2;
-            ColumnHeader list2= new ColumnHeader();
-            list2.Text = "Categoria";
-            list2.Width = -2;
-            ColumnHeader list3= new ColumnHeader();
-            list3.Text = "Url";
-            list3.Width = -2;
-            ColumnHeader list4= new ColumnHeader();
-            list4.Text = "Usuário";
-            list4.Width = -2;
-            ColumnHeader list5= new ColumnHeader();
-            list5.Text = "Procedimento";
-            list5.Width = -2;
+            ColumnHeader list0 = new ColumnHeader
+            {
+                Text = "Id",
+                Width = -2
+            };
+            ColumnHeader list1 = new ColumnHeader
+            {
+                Text = "Nome",
+                Width = -2
+            };
+            ColumnHeader list2 = new ColumnHeader
+            {
+                Text = "Categoria",
+                Width = -2
+            };
+            ColumnHeader list3 = new ColumnHeader
+            {
+                Text = "Url",
+                Width = -2
+            };
+            ColumnHeader list4 = new ColumnHeader
+            {
+                Text = "Usuário",
+                Width = -2
+            };
+            ColumnHeader list5 = new ColumnHeader
+            {
+                Text = "Procedimento",
+                Width = -2
+            };
 
             // Add the column headers to listView1.
             listView.Columns.AddRange(new ColumnHeader[] 
@@ -64,9 +76,41 @@ namespace Views
                 listSenha.SubItems.Add(item.CategoriaId + "");
                 listSenha.SubItems.Add(item.Url);
                 listSenha.SubItems.Add(item.Usuario);
+                listSenha.SubItems.Add(item.Procedimento);
                 listSenha.SubItems.Add(item.Procedimento);		
                 listView.Items.AddRange(new ListViewItem[]{listSenha});
             }
+
+            ListView listView1 = new ListView();
+            listView.Dock = DockStyle.Fill;
+            listView.View = View.Details;
+            listView.Sorting = SortOrder.Ascending;
+
+            // Create and initialize column headers for listView1.
+            ColumnHeader list6 = new ColumnHeader
+            {
+                Text = "Senha",
+                Width = -2
+            };
+            ColumnHeader list7 = new ColumnHeader
+            {
+                Text = "Tag id",
+                Width = -2
+            };
+
+            // Add the column headers to listView1.
+            listView1.Columns.AddRange(new ColumnHeader[] 
+                {list6,list7});
+
+            listView1.View = View.Details;
+			foreach(SenhaTag item in SenhaTagController.GetSenhaTags())
+            {
+                ListViewItem listSenha1= new ListViewItem(item.Id + "");
+                listSenha1.SubItems.Add(item.SenhaId + "");
+                listSenha1.SubItems.Add(item.TagId + "");		
+                listView.Items.AddRange(new ListViewItem[]{listSenha1});
+            }
+
 
             this.btnInsert = new Button
             {
