@@ -19,54 +19,67 @@ namespace Views
     {
         public delegate void HandleButton(object sender, EventArgs e);
 
-        Label lblUpdate;
-        Label lblId;
-        TextBox textId;
-       Label lblNome;
-        TextBox textNome;
-        Label lblCategoria;
-        ComboBox comboBoxCategoria;
-        Label lblUrl;
-        TextBox textUrl;
-        Label lblUsuario;
-        TextBox textUsuario;
-        Label lblSenha;
-        TextBox textSenha;
-        Label lblProcedimento;
-        TextBox textProcedimento;
-        Label lblTag;
-        CheckBox checkBoxTag;
-        Button btnConfirm;
-        Button btnCancel;
+        readonly Label lblUpdate;
+        readonly Label lblId;
+        readonly TextBox textId;
+        readonly Label lblNome;
+        readonly TextBox textNome;
+        readonly Label lblCategoria;
+        readonly ComboBox comboBoxCategoria;
+        readonly Label lblUrl;
+        readonly TextBox textUrl;
+        readonly Label lblUsuario;
+        readonly TextBox textUsuario;
+        readonly Label lblSenha;
+        readonly TextBox textSenha;
+        readonly Label lblProcedimento;
+        readonly TextBox textProcedimento;
+        readonly Label lblTag;
+        readonly CheckedListBox checkListBoxtag;
+        readonly Button btnConfirm;
+        readonly Button btnCancel;
 
         public SenhaUpdate() : base("Alterar Usuarios")
         {
+            this.ClientSize = new System.Drawing.Size(400,700);
 
-            this.lblUpdate = new Label();
-            this.lblUpdate.Text = "Dados Senha:";
-            this.lblUpdate.Location = new Point(100, 50);
-            
-            this.lblId = new Label();
-            this.lblId.Text = " Digite o Id  ";
-            this.lblId.Location = new Point(120, 75);
-            this.lblId.Size = new Size(240,15);
+            this.lblUpdate = new Label
+            {
+                Text = "Dados Senha:",
+                Location = new Point(100, 50)
+            };
 
-            textId = new TextBox();
-            textId.Location = new Point(10,100);
-            textId.Size = new Size(360,20);
+            this.lblId = new Label
+            {
+                Text = " Digite o Id  ",
+                Location = new Point(120, 75),
+                Size = new Size(240, 15)
+            };
 
-            this.lblNome = new Label();
-            this.lblNome.Text = " Digite o Nome ";
-            this.lblNome.Location = new Point(120, 125);
-            this.lblNome.Size = new Size(240,15);
+            textId = new TextBox
+            {
+                Location = new Point(10, 100),
+                Size = new Size(360, 20)
+            };
 
-            textNome = new TextBox();
-            textNome.Location = new Point(10,150);
-            textNome.Size = new Size(360,20);
-            
-            this.lblCategoria = new Label();
-            this.lblCategoria.Text = " Categoria";
-            this.lblCategoria.Location = new Point(120, 175);
+            this.lblNome = new Label
+            {
+                Text = " Digite o Nome ",
+                Location = new Point(120, 125),
+                Size = new Size(240, 15)
+            };
+
+            textNome = new TextBox
+            {
+                Location = new Point(10, 150),
+                Size = new Size(360, 20)
+            };
+
+            this.lblCategoria = new Label
+            {
+                Text = " Categoria",
+                Location = new Point(120, 175)
+            };
 
             string[] categoriasSuggestion = CategoriaController
                 .GetCategorias()
@@ -133,6 +146,19 @@ namespace Views
                 Location = new Point(120, 425)
             };
 
+            // Create and initialize a CheckBox.
+
+            string[] tagSuggestion = TagController
+                .GetTags()
+                .Select(Tag => Tag.ToSuggestion())
+                .ToArray();
+            this.checkListBoxtag = new CheckedListBox{
+                Location = new Point(10, 450),
+                Size = new Size(360, 100),
+                
+            };
+            checkListBoxtag.Items.AddRange(tagSuggestion);
+
 
            this.Controls.Add(this.lblUpdate);
             this.Controls.Add(this.lblId);
@@ -150,11 +176,11 @@ namespace Views
             this.Controls.Add(this.lblProcedimento);
             this.Controls.Add(this.textProcedimento);
             this.Controls.Add(this.lblTag);
-            this.Controls.Add(this.checkBoxTag);
+            this.Controls.Add(this.checkListBoxtag);
             
 
-            this.btnConfirm = new ButtonForm(this.Controls, "Confirmar", 40,480, this.handleConfirmClick);
-            this.btnCancel = new ButtonForm(this.Controls, "Cancelar", 150, 480, this.handleCancelClick);
+            this.btnConfirm = new ButtonForm(this.Controls, "Confirmar", 80,600, this.handleConfirmClick);
+            this.btnCancel = new ButtonForm(this.Controls, "Cancelar", 190, 600, this.handleCancelClick);
             
                
         }

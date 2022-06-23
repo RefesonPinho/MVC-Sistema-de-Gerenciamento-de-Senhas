@@ -21,6 +21,6 @@ namespace Repository
         // Local Config
         //"Server=localhost;User Id=root;Database=encryptme"
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseMySql("Server=localhost;User Id=root;Database=encryptme");
+            => options.UseMySql("Server=localhost;UserId=root;Database=encryptme");
     }
 }

@@ -19,28 +19,35 @@ namespace Views
     {
         public delegate void HandleButton(object sender, EventArgs e);
 
-        Label lblInsert;
-        Label lblDescricao;
-        TextBox textDescricao;
-        Button btnConfirm1;
-        Button btnCancel1;
+        readonly Label lblInsert;
+        readonly Label lblDescricao;
+        readonly TextBox textDescricao;
+        readonly Button btnConfirm1;
+        readonly Button btnCancel1;
 
         public TagInsert() : base("Inserir Tag")
         {
-            this.lblInsert = new Label();
-            this.lblInsert.Text = "Dados Tag:";
-            this.lblInsert.Location = new Point(100, 50);
-            
-            this.lblDescricao = new Label();
-            this.lblDescricao.Text = " Descricao";
-            this.lblDescricao.Location = new Point(120, 100);
+            this.ClientSize = new System.Drawing.Size(400,300);
+            this.lblInsert = new Label
+            {
+                Text = "Dados Tag:",
+                Location = new Point(120, 50)
+            };
 
-            textDescricao = new TextBox();
-            textDescricao.Location = new Point(10,125);
-            textDescricao.Size = new Size(360,20);
+            this.lblDescricao = new Label
+            {
+                Text = " Descricao",
+                Location = new Point(120, 100)
+            };
 
-            this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 40,240, this.handleConfirmClick);
-            this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 150, 240, this.handleCancelClick);
+            textDescricao = new TextBox
+            {
+                Location = new Point(10, 125),
+                Size = new Size(360, 20)
+            };
+
+            this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 80,200, this.handleConfirmClick);
+            this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 190, 200, this.handleCancelClick);
 
             this.Controls.Add(this.lblInsert);
             this.Controls.Add(this.btnConfirm1);

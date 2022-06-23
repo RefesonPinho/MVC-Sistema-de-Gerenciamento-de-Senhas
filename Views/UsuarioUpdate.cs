@@ -19,60 +19,73 @@ namespace Views
     {
         public delegate void HandleButton(object sender, EventArgs e);
 
-        Label lblUpdate;
-        Label lblId;
-        Label lblNome;
-        Label lblEmail;
-        Label lblSenha;
-
-        TextBox textNome;
-        TextBox textEmail;
-        TextBox textId;
-        TextBox textSenha;
-        
-        Button btnConfirm1;
-        Button btnCancel1;
+        readonly Label lblUpdate;
+        readonly Label lblId;
+        readonly Label lblNome;
+        readonly Label lblEmail;
+        readonly Label lblSenha;
+        readonly TextBox textNome;
+        readonly TextBox textEmail;
+        readonly TextBox textId;
+        readonly TextBox textSenha;
+        readonly Button btnConfirm1;
+        readonly Button btnCancel1;
 
         public UsuarioUpdate() : base("Alterar Usuarios")
         {
+            this.ClientSize = new System.Drawing.Size(400,400);
+            this.lblId = new Label
+            {
+                Text = " Digite o Id  ",
+                Location = new Point(120, 50),
+                Size = new Size(240, 15)
+            };
 
+            textId = new TextBox
+            {
+                Location = new Point(10, 75),
+                Size = new Size(360, 20)
+            };
 
-            this.lblId = new Label();
-            this.lblId.Text = " Digite o Id  ";
-            this.lblId.Location = new Point(120, 50);
-            this.lblId.Size = new Size(240,15);
+            this.lblNome = new Label
+            {
+                Text = " Digite o Nome ",
+                Location = new Point(120, 100),
+                Size = new Size(240, 15)
+            };
 
-            textId = new TextBox();
-            textId.Location = new Point(10,75);
-            textId.Size = new Size(360,20);
+            textNome = new TextBox
+            {
+                Location = new Point(10, 125),
+                Size = new Size(360, 20)
+            };
 
-            this.lblNome = new Label();
-            this.lblNome.Text = " Digite o Nome ";
-            this.lblNome.Location = new Point(120, 100);
-            this.lblNome.Size = new Size(240,15);
+            this.lblEmail = new Label
+            {
+                Text = " Email",
+                Location = new Point(120, 150)
+            };
 
-            textNome = new TextBox();
-            textNome.Location = new Point(10,125);
-            textNome.Size = new Size(360,20);
-            
-            this.lblEmail = new Label();
-            this.lblEmail.Text = " Email";
-            this.lblEmail.Location = new Point(120, 150);
+            textEmail = new TextBox
+            {
+                Location = new Point(10, 175),
+                Size = new Size(360, 20)
+            };
 
-            textEmail = new TextBox();
-            textEmail.Location = new Point(10,175);
-            textEmail.Size = new Size(360,20);
+            this.lblSenha = new Label
+            {
+                Text = " Senha",
+                Location = new Point(120, 200)
+            };
 
-            this.lblSenha = new Label();
-            this.lblSenha.Text = " Senha";
-            this.lblSenha.Location = new Point(120, 200);
+            textSenha = new TextBox
+            {
+                Location = new Point(10, 225),
+                Size = new Size(360, 20)
+            };
 
-            textSenha = new TextBox();
-            textSenha.Location = new Point(10,225);
-            textSenha.Size = new Size(360,20);
-
-            this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 40,260, this.handleConfirmClick);
-            this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 150, 260, this.handleCancelClick);
+            this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 80,300, this.handleConfirmClick);
+            this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 190, 300, this.handleCancelClick);
 
 
 

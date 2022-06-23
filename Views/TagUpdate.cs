@@ -19,16 +19,17 @@ namespace Views
     {
         public delegate void HandleButton(object sender, EventArgs e);
 
-        Label lblUpdate;
-        Label lblId;
-        Label lblDescricao;
-        TextBox textDescricao;
-        TextBox textId;
-        Button btnConfirm1;
-        Button btnCancel1;
+        readonly Label lblUpdate;
+        readonly Label lblId;
+        readonly Label lblDescricao;
+        readonly TextBox textDescricao;
+        readonly TextBox textId;
+        readonly Button btnConfirm1;
+        readonly Button btnCancel1;
 
         public TagUpdate() : base("Alterar Tags")
         {
+            this.ClientSize = new System.Drawing.Size(400,300);
             lblUpdate = new Label
             {
                 Text = "Dados Tag:",
@@ -51,7 +52,8 @@ namespace Views
             lblDescricao = new Label
             {
                 Text = " Descricao",
-                Location = new Point(160, 150)
+                Location = new Point(80, 150),
+                Size = new Size(240, 15)
             };
 
             textDescricao = new TextBox
@@ -60,8 +62,8 @@ namespace Views
                 Size = new Size(360, 20)
             };
 
-            this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 40,240, this.handleConfirmClick);
-            this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 150, 240, this.handleCancelClick);
+            this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 80,240, this.handleConfirmClick);
+            this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 190, 240, this.handleCancelClick);
 
             this.Controls.Add(this.lblUpdate);
             this.Controls.Add(this.lblDescricao);

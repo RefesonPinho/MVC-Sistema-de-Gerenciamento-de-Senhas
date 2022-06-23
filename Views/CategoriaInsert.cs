@@ -19,39 +19,50 @@ namespace Views
     {
         public delegate void HandleButton(object sender, EventArgs e);
 
-        Label lblInsert;
-        Label lblNome;
-        TextBox textNome;
-        Label lblDescricao;
-        TextBox textDescricao;
-        Button btnConfirm1;
-        Button btnCancel1;
+        readonly Label lblInsert;
+        readonly Label lblNome;
+        readonly TextBox textNome;
+        readonly Label lblDescricao;
+        readonly TextBox textDescricao;
+        readonly Button btnConfirm1;
+        readonly Button btnCancel1;
 
         public CategoriaInsert() : base("Inserir Categoria")
         {
-            this.lblInsert = new Label();
-            this.lblInsert.Text = "Dados Categoria:";
-            this.lblInsert.Location = new Point(100, 50);
+            this.ClientSize = new System.Drawing.Size(400,300);
+            this.lblInsert = new Label
+            {
+                Text = "Dados Categoria:",
+                Location = new Point(100, 50)
+            };
 
-            this.lblNome = new Label();
-            this.lblNome.Text = " Digite o Nome ";
-            this.lblNome.Location = new Point(120, 100);
-            this.lblNome.Size = new Size(240,15);
+            this.lblNome = new Label
+            {
+                Text = " Digite o Nome ",
+                Location = new Point(120, 100),
+                Size = new Size(240, 15)
+            };
 
-            textNome = new TextBox();
-            textNome.Location = new Point(10,125);
-            textNome.Size = new Size(360,20);
-            
-            this.lblDescricao = new Label();
-            this.lblDescricao.Text = " Descricao";
-            this.lblDescricao.Location = new Point(120, 150);
+            textNome = new TextBox
+            {
+                Location = new Point(10, 125),
+                Size = new Size(360, 20)
+            };
 
-            textDescricao = new TextBox();
-            textDescricao.Location = new Point(10,175);
-            textDescricao.Size = new Size(360,20);
+            this.lblDescricao = new Label
+            {
+                Text = " Descricao",
+                Location = new Point(120, 150)
+            };
 
-            this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 40,240, this.handleConfirmClick);
-            this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 150, 240, this.handleCancelClick);
+            textDescricao = new TextBox
+            {
+                Location = new Point(10, 175),
+                Size = new Size(360, 20)
+            };
+
+            this.btnConfirm1 = new Campos.ButtonForm(this.Controls, "Confirmar", 80,240, this.handleConfirmClick);
+            this.btnCancel1 = new Campos.ButtonForm(this.Controls, "Cancelar", 190, 240, this.handleCancelClick);
 
             this.Controls.Add(this.lblInsert);
             this.Controls.Add(this.btnConfirm1);

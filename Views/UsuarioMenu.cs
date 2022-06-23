@@ -15,33 +15,42 @@ namespace Views
 {
     public class UsuarioMenu : BaseForm
     {
-    
-        ListView listView;
-        Button btnInsert;
-        Button btnAlterar;
-        Button btnExcluir;
-        Button btnVoltar;
+        readonly ListView listView;
+        readonly Button btnInsert;
+        readonly Button btnAlterar;
+        readonly Button btnExcluir;
+        readonly Button btnVoltar;
 
         public UsuarioMenu() : base(" Usuários cadastrados")
         {
-            listView = new ListView();
-            listView.Dock = DockStyle.Fill;
-            listView.View = View.Details;
-            listView.Sorting = SortOrder.Ascending;
+            listView = new ListView
+            {
+                Dock = DockStyle.Fill,
+                View = View.Details,
+                Sorting = SortOrder.Ascending
+            };
 
             // Create and initialize column headers for listView1.
-            ColumnHeader list0 = new ColumnHeader();
-            list0.Text = "Id";
-            list0.Width = -2;
-            ColumnHeader list1 = new ColumnHeader();
-            list1.Text = "Nome";
-            list1.Width = -2;
-            ColumnHeader list2= new ColumnHeader();
-            list2.Text = "Email";
-            list2.Width = -2;
-            ColumnHeader list3= new ColumnHeader();
-            list3.Text = "Senha";
-            list3.Width = -2;
+            ColumnHeader list0 = new ColumnHeader
+            {
+                Text = "Id",
+                Width = -2
+            };
+            ColumnHeader list1 = new ColumnHeader
+            {
+                Text = "Nome",
+                Width = -2
+            };
+            ColumnHeader list2 = new ColumnHeader
+            {
+                Text = "Email",
+                Width = -2
+            };
+            ColumnHeader list3 = new ColumnHeader
+            {
+                Text = "Senha",
+                Width = -2
+            };
 
             // Add the column headers to listView1.
             listView.Columns.AddRange(new ColumnHeader[] 
@@ -58,29 +67,37 @@ namespace Views
                 listUsuario.SubItems.Add(item.Senha);	
                 listView.Items.AddRange(new ListViewItem[]{listUsuario});
             }
-        
-            this.btnInsert = new Button();
-            this.btnInsert.Text = "Inserir";
-            this.btnInsert.Location = new Point(40, 230);
-            this.btnInsert.Size = new Size(100, 30);
+
+            this.btnInsert = new Button
+            {
+                Text = "Inserir",
+                Location = new Point(40, 230),
+                Size = new Size(100, 30)
+            };
             this.btnInsert.Click += new EventHandler(this.handleInsertClick);
 
-            this.btnAlterar = new Button();
-            this.btnAlterar.Text = "Alterar";
-            this.btnAlterar.Location = new Point(150, 230);
-            this.btnAlterar.Size = new Size(100, 30);
+            this.btnAlterar = new Button
+            {
+                Text = "Alterar",
+                Location = new Point(150, 230),
+                Size = new Size(100, 30)
+            };
             this.btnAlterar.Click += new EventHandler(this.handleAlterarClick);
 
-            this.btnExcluir = new Button();
-            this.btnExcluir.Text = "Excluir";
-            this.btnExcluir.Location = new Point(260, 230);
-            this.btnExcluir.Size = new Size(100, 30);
+            this.btnExcluir = new Button
+            {
+                Text = "Excluir",
+                Location = new Point(260, 230),
+                Size = new Size(100, 30)
+            };
             this.btnExcluir.Click += new EventHandler(this.handleExcluirClick);
 
-            this.btnVoltar = new Button();
-            this.btnVoltar.Text = "Voltar";
-            this.btnVoltar.Location = new Point(370, 230);
-            this.btnVoltar.Size = new Size(100, 30);
+            this.btnVoltar = new Button
+            {
+                Text = "Voltar",
+                Location = new Point(370, 230),
+                Size = new Size(100, 30)
+            };
             this.btnVoltar.Click += new EventHandler(this.handleVoltarClik);     
 
             this.Controls.Add(this.btnInsert);

@@ -7,8 +7,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
 using System.IO;
+using Views;
 using lib;
-
+using Models;
 
 namespace Views
 {
@@ -30,15 +31,15 @@ namespace Views
 
     public class Login : Form
     {
-
-        Campos.Field fieldUser;
-        Campos.Field fieldPass;
-
-        Button btnConfirm;
-        Button btnSair;
+        readonly Campos.Field fieldUser;
+        readonly Campos.Field fieldPass;
+        readonly Button btnConfirm;
+        readonly Button btnSair;
 
         public Login()
+
         {
+            this.ClientSize = new System.Drawing.Size(300,300);
             this.fieldUser = new Campos.Field(this.Controls, "Usuário", 20, true);
             this.fieldPass = new Campos.Field(this.Controls, "Senha", 80, true, true);
             this.fieldPass.textField.ForeColor = System.Drawing.Color.Red;
@@ -77,58 +78,61 @@ namespace Views
 
     public class MenuPrincipal : Form
     {
-
-        Label lblLogin;
-
-        Button btnTag;
-        Button btnCategoria;
-        Button btnUsuario;
-        Button btnSenha;
-        Button btnSenhaTag;
-        Button btnSair;
+        readonly Label lblLogin;
+        readonly Button btnTag;
+        readonly Button btnCategoria;
+        readonly Button btnUsuario;
+        readonly Button btnSenha;
+        readonly Button btnSair;
 
         
         public MenuPrincipal() 
         {
-            this.lblLogin = new Label();
-            this.lblLogin.Text = "Olá Fulano";
-            this.lblLogin.Location = new Point(117, 20);
+            this.lblLogin = new Label
+            {
+                Text = $"Olá {Usuario.UsuarioAuth}",
+                Location = new Point(117, 20)
+            };
 
-            this.btnTag = new Button();
-            this.btnTag.Text = "Tag";
-            this.btnTag.Location = new Point(40, 60);
-            this.btnTag.Size = new Size(100, 30);
+            this.btnTag = new Button
+            {
+                Text = "Tag",
+                Location = new Point(40, 60),
+                Size = new Size(100, 30)
+            };
             this.btnTag.Click += new EventHandler(this.handleTagClick);
 
-            this.btnCategoria = new Button();
-            this.btnCategoria.Text = "Categoria";
-            this.btnCategoria.Location = new Point(160, 60);
-            this.btnCategoria.Size = new Size(100, 30);
+            this.btnCategoria = new Button
+            {
+                Text = "Categoria",
+                Location = new Point(160, 60),
+                Size = new Size(100, 30)
+            };
             this.btnCategoria.Click += new EventHandler(this.handleCategoriaClick);
 
-            this.btnUsuario = new Button();
-            this.btnUsuario.Text = "Usuario";
-            this.btnUsuario.Location = new Point(40, 100);
-            this.btnUsuario.Size = new Size(100, 30);
+            this.btnUsuario = new Button
+            {
+                Text = "Usuario",
+                Location = new Point(40, 130),
+                Size = new Size(100, 30)
+            };
             this.btnUsuario.Click += new EventHandler(this.handleUsuarioClick);
 
-            this.btnSenha = new Button();
-            this.btnSenha.Text = "Senha";
-            this.btnSenha.Location = new Point(160, 100);
-            this.btnSenha.Size = new Size(100, 30);
+            this.btnSenha = new Button
+            {
+                Text = "Senha",
+                Location = new Point(160, 130),
+                Size = new Size(100, 30)
+            };
             this.btnSenha.Click += new EventHandler(this.handleSenhaClick);
 
-            this.btnSenhaTag = new Button();
-            this.btnSenhaTag.Text = "SenhaTag";
-            this.btnSenhaTag.Location = new Point(40, 140);
-            this.btnSenhaTag.Size = new Size(100, 30);
-            this.btnSenhaTag.Click += new EventHandler(this.handleSenhaTagClick);
 
-
-            this.btnSair = new Button();
-            this.btnSair.Text = "Sair";
-            this.btnSair.Location = new Point(110, 200);
-            this.btnSair.Size = new Size(80, 30);
+            this.btnSair = new Button
+            {
+                Text = "Sair",
+                Location = new Point(110, 200),
+                Size = new Size(80, 30)
+            };
             this.btnSair.Click += new EventHandler(this.handleSairClick);
 
             this.Controls.Add(this.lblLogin);
@@ -137,7 +141,6 @@ namespace Views
             this.Controls.Add(this.btnCategoria);
             this.Controls.Add(this.btnUsuario);
             this.Controls.Add(this.btnSenha);
-            this.Controls.Add(this.btnSenhaTag);
             this.Controls.Add(this.btnSair);
 
         }
@@ -163,13 +166,7 @@ namespace Views
             menu.ShowDialog();
             
         }
-        private void handleSenhaTagClick(object sender, EventArgs e)
-        {
-            MenuPrincipal menu = new MenuPrincipal();
-            menu.ShowDialog();
-            this.Close();
-        }
-         
+               
         private void handleSairClick(object sender, EventArgs e)
         {
             this.Close();
