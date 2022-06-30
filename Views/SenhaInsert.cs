@@ -138,10 +138,7 @@ namespace Views
             };
             checkListBoxtag.Items.AddRange(tagSuggestion);
 
-            
-
-            
-
+        
             this.Controls.Add(this.lblInsert);
             this.Controls.Add(this.lblNome);
             this.Controls.Add(this.textNome);

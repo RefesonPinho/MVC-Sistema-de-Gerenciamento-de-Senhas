@@ -172,7 +172,9 @@ namespace Views
         }
         private void handleVoltarClik(object sender, EventArgs e)
         {
-           Views.MenuPrincipal menu = new Views.MenuPrincipal();
+            using (Views.MenuPrincipal menu = new Views.MenuPrincipal())
+            {
+            }
             this.Close();       
         }  
     }           
