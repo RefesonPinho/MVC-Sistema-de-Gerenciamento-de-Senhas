@@ -11,7 +11,7 @@ using Models;
 using Controllers;
 using static lib.Campos;
 using lib;
-
+using Views;
 
 namespace Views
 {
@@ -137,7 +137,9 @@ namespace Views
         
         private void handleCancelClick(object sender, EventArgs e)
         {
-            Views.MenuPrincipal menu = new Views.MenuPrincipal();
+            using (Views.MenuPrincipal menu = new Views.MenuPrincipal())
+            {
+            }
             this.Close();
         }  
     }       

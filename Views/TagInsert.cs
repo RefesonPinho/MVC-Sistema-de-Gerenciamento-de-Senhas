@@ -80,7 +80,9 @@ namespace Views
 
         private void handleCancelClick(object sender, EventArgs e)
         {
-            Views.MenuPrincipal menu = new Views.MenuPrincipal();
+            using (Views.MenuPrincipal menu = new Views.MenuPrincipal())
+            {
+            }
             this.Close();
         }  
     }       
